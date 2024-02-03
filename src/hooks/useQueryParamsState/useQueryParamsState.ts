@@ -1,23 +1,36 @@
-import { useSyncExternalStore, useCallback } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, redirect } from 'next/navigation';
 
-// const queryParamsNamesInUse = ['test1', 'test2', 'test3'] as const;
-
-// type QueryParamsNamesInUse = typeof queryParamsNamesInUse[number];
-// type QueryParamsStringified = Partial<Record<QueryParamsNamesInUse, string | undefined>> | null; // todo remove undefined
+import { queryParamDefaults, queryParamDefaults2, queryParamNames } from './constants';
+import type { QueryParamsStringified } from './types';
+import queryParamsSchema from './schema';
 
 const useQueryParamsState = () => {
   const searchParams = useSearchParams();
-  const searchParamSubscription = useCallback(() => () => searchParams, [searchParams]);
+  const router = useRouter();
 
-  const urlStateStringified = useSyncExternalStore(
-    searchParamSubscription,
-    () => searchParams.get('test'),
-  );
+  const paramsObject = Object.fromEntries(searchParams);
+  const queryResult = queryParamsSchema.safeParse(paramsObject);
 
-  // zod
+  // const setQueryParams = () => {
+  //   if (queryResult.success) {
+  //     const queryString = new URLSearchParams(queryResult.data);
+  //     window.history.pushState({}, "", window.location.pathname + "?" + queryString.toString());
 
-  return urlStateStringified;
+  //     return
+  //   }
+
+  //   const queryString = new URLSearchParams(queryParamDefaults2);
+  //   window.history.pushState({}, "", window.location.pathname + "?" + queryString.toString());
+  // };
+
+  if (queryResult.success) {
+    return [queryResult.data] as const;
+  }
+
+  const queryString = new URLSearchParams(queryParamDefaults2);
+  redirect("/?" + queryString.toString());
+
+  // return [queryParamDefaults2, setQueryParams] as const;
 };
 
 export default useQueryParamsState;
