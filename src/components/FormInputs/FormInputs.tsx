@@ -1,10 +1,17 @@
 'use client';
 
-import type { QueryParamsSchema, QueryParamsSchemaStringified } from '@/hooks/useQueryParamsState/schema';
+import type {
+  QueryParamsSchema,
+  QueryParamsSchemaStringified,
+} from '@/hooks/useQueryParamsState/schema';
 import { Button, Label, TextField, Input, Form, FieldError } from 'react-aria-components';
 import { Controller, useForm } from 'react-hook-form';
 import queryParamsSchema from '@/hooks/useQueryParamsState/schema';
-import { queryParamDefaults, queryParamDefaultsStringified } from '@/hooks/useQueryParamsState/constants';
+import {
+  queryParamDefaults,
+  queryParamDefaultsStringified,
+} from '@/hooks/useQueryParamsState/constants';
+
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
@@ -13,9 +20,12 @@ type FormInputsProps = QueryParamsSchema & {
   dummy?: string;
 };
 
-const onSubmit = (data) => {
-  // update query params
-  console.log(data)
+// todo: type is queryParamsSchema, but RHF thinks it is QueryParamsSchemaStringified, e.g ignoring the type coercion in schema
+const updateQueryParams = (newFormData: QueryParamsSchemaStringified) => {
+  const newQueryString = new URLSearchParams(newFormData);
+
+  // triggers new render in server component and updates child components with new state from query
+  window.history.pushState({}, "", window.location.pathname + "?" + newQueryString.toString());
 };
 
 export default function FormInputs({
@@ -25,12 +35,17 @@ export default function FormInputs({
   retirementAge,
 }: FormInputsProps) {
   const { handleSubmit, control, formState } = useForm<QueryParamsSchemaStringified>({
-    defaultValues: queryParamDefaultsStringified,
+    defaultValues: {
+      monthlyPension: monthlyPension.toString(),
+      monthlyPersonalContribution: monthlyPersonalContribution.toString(),
+      monthlyEmployerContribution: monthlyEmployerContribution.toString(),
+      retirementAge: retirementAge.toString(),
+    },
     resolver: zodResolver(queryParamsSchema),
   });
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(updateQueryParams)}>
       {/* Monthly pension */}
       <Controller
         control={control}
