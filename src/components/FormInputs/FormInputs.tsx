@@ -57,14 +57,14 @@ export default function FormInputs({
             validationBehavior="aria"
             isInvalid={invalid}
             className="mb-4"
-            minValue={0}
+            minValue={1}
             formatOptions={{
               style: 'currency',
               currency: 'GBP',
               currencyDisplay: 'symbol',
             }}
           >
-            <Label>Monthly pension: </Label>
+            <Label>Desired monthly pension: </Label>
             <Input ref={ref} />
             <FieldError>{error?.message}</FieldError>
           </NumberField>
@@ -150,7 +150,7 @@ export default function FormInputs({
             formatOptions={{
               style: 'unit',
               unit: 'year',
-              unitDisplay: 'short'
+              unitDisplay: 'narrow'
             }}
           >
             <Label>Retirement Age: </Label>
