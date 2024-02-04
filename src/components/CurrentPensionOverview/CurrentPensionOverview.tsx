@@ -1,15 +1,12 @@
+import { ageAtDeath } from '@/constants';
+import { currencyFormatter } from '@/helpers/formatters/formatters';
+
 type CurrentPensionOverviewProps = {
   totalContributionsAtChosenRetirementAge: number;
   retirementAge: number;
   workLifeInYears: number;
   monthlyPension: number;
 };
-import { ageAtDeath } from '@/constants';
-
-const currencyFormatter = new Intl.NumberFormat('en-GB', {
-  style: 'currency',
-  currency: 'GBP',
-});
 
 export default function CurrentPensionOverview({
   workLifeInYears,
@@ -22,16 +19,18 @@ export default function CurrentPensionOverview({
       <h2 className="mb-4 text-lg	font-bold">Projected pension pot details</h2>
       <p className="mb-4">This is your potential pension pot.</p>
       <dl className="grid grid-cols-[repeat(1,1fr_min-content)] gap-4">
-        <dt>Monthly pension you would receive: </dt>
-        <dd>{currencyFormatter.format(monthlyPension / 100)}</dd>
-        <dt>Planned retirement age: </dt>
-        <dd>{retirementAge}</dd>
-        <dt>Life expectancy: </dt>
-        <dd>{ageAtDeath}</dd>
-        <dt>Work life in years: </dt>
-        <dd>{Math.floor(workLifeInYears)}</dd>
-        <dt>Total contributions at chosen retirement age: </dt>
-        <dd>{currencyFormatter.format(totalContributionsAtChosenRetirementAge / 100)}</dd>
+        <dt>Monthly pension you would receive:</dt>
+        <dd className="text-right">{currencyFormatter.format(monthlyPension / 100)}</dd>
+        <dt>Age at retirement:</dt>
+        <dd className="text-right">{retirementAge}</dd>
+        <dt>Number of years worked:</dt>
+        <dd className="text-right">{Math.floor(workLifeInYears)}</dd>
+        <dt>Life expectancy:</dt>
+        <dd className="text-right">{ageAtDeath}</dd>
+        <dt>Total contributions at retirement age:</dt>
+        <dd className="text-right">
+          {currencyFormatter.format(totalContributionsAtChosenRetirementAge / 100)}
+        </dd>
       </dl>
     </div>
   );

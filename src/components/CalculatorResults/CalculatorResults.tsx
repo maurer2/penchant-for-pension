@@ -5,11 +5,6 @@ import CurrentPensionToMaxPension from '../CurrentPensionToMaxPension/CurrentPen
 import CurrentPensionOverview from '../CurrentPensionOverview/CurrentPensionOverview';
 import CurrentPensionDepletion from '../CurrentPensionDepletion/CurrentPensionDepletion';
 
-// const currencyFormatter = new Intl.NumberFormat('en-GB', {
-//   style: 'currency',
-//   currency: 'GBP',
-// });
-
 type CalculatorResultsProps = PensionBaseParameters;
 
 export default function CalculatorResults({

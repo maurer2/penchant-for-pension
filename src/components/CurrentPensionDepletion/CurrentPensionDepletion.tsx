@@ -1,18 +1,11 @@
+import { ageAtDeath } from '@/constants';
+import { yearFormatter } from '@/helpers/formatters/formatters';
+
 type CurrentPensionDepletionProps = {
   numberOfYearsUntilPensionPotIsDepleted: number;
   ageWhenPensionPotIsDepleted: number;
   retirementAge: number;
 };
-
-import { ageAtDeath } from '@/constants';
-
-const yearFormatter = new Intl.NumberFormat('en-GB', {
-  style: 'unit',
-  unit: 'year',
-  unitDisplay: 'long',
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-});
 
 export default function CurrentPensionDepletion({
   numberOfYearsUntilPensionPotIsDepleted,
@@ -48,8 +41,8 @@ export default function CurrentPensionDepletion({
           </svg>
           <span className="sr-only">Warning</span>
           <div>
-            <span>Warning!</span> Your potential pension pot would get
-            depleted before the end of your life. You would probably need to go back to work for {' '}
+            <span>Warning!</span> Your potential pension pot would get depleted before the end of
+            your life. You would probably need to go back to work for{' '}
             {remainingYearsAfterDepletionFormatted}.
           </div>
         </div>
@@ -69,8 +62,8 @@ export default function CurrentPensionDepletion({
           </svg>
           <span className="sr-only">Nice</span>
           <div>
-            <span>Nice!</span> Your potential pension pot would not get
-            depleted before the end of your life.
+            <span>Nice!</span> Your potential pension pot would not get depleted before the end of
+            your life.
           </div>
         </div>
       )}

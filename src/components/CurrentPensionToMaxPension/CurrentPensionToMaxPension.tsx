@@ -1,16 +1,12 @@
+import { ageAtDeath } from '@/constants';
+
+import { percentFormatter, currencyFormatter } from '@/helpers/formatters/formatters';
+
 type CurrentPensionToMaxPensionProps = {
   totalContributionsAtChosenRetirementAge: number;
   totalContributionsAtDeath: number;
   retirementAge: number;
 };
-
-const percentFormatter = new Intl.NumberFormat('en-GB', {
-  style: 'percent',
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-});
-
-import { ageAtDeath } from '@/constants';
 
 export default function CurrentPensionToMaxPension({
   totalContributionsAtChosenRetirementAge,
@@ -25,11 +21,13 @@ export default function CurrentPensionToMaxPension({
     <div className="mb-8">
       <h2 className="mb-2 text-lg	font-bold">Pension pot comparison</h2>
       <p className="mb-2">
-        By retiring at {retirementAge} your pension pot would be {percentOfTotalFormatted} of the
-        maximum possible pension, that you would get when retiring at age {ageAtDeath}.
+        By retiring at {retirementAge} your pension pot would contain {percentOfTotalFormatted} of the
+        maximum possible pension that you would get when retiring at age {ageAtDeath}.
       </p>
       <div className="flex justify-between mb-1">
-        <span className="text-base text-blue-700">Retirement at {retirementAge}</span>
+        <span className="text-base text-blue-700">
+          Retire with {currencyFormatter.format(totalContributionsAtChosenRetirementAge / 100)}
+        </span>
         <span className=" text-blue-700">{percentOfTotalFormatted}</span>
       </div>
       <div className="w-full bg-gray-200 rounded-full h-2.5">
