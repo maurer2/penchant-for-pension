@@ -3,27 +3,23 @@
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
-import type { QueryParamsSchema } from '@/hooks/useQueryParamsState/schema';
+import type { PensionBaseParameters } from '@/types';
 import FormInputs from '@/components/FormInputs/FormInputs';
 import CalculatorResults from '@/components/CalculatorResults/CalculatorResults';
 
-type CalculatorProps = QueryParamsSchema;
+type CalculatorProps = {
+  baseParams: PensionBaseParameters;
+}
 
 export default function Calculator({
-  monthlyPension,
-  monthlyPersonalContribution,
-  monthlyEmployerContribution,
-  retirementAge,
+  baseParams,
 }: CalculatorProps) {
-  const [pensionData, setPensionData] = useState<QueryParamsSchema>(() => ({
-    monthlyPension,
-    monthlyPersonalContribution,
-    monthlyEmployerContribution,
-    retirementAge,
-  })); // todo replace with useReducer
+  const [pensionData, setPensionData] = useState<PensionBaseParameters>(() => ({
+    ...baseParams,
+  }));
   const router = useRouter();
 
-  const updateQueryParams = (newFormData: QueryParamsSchema) => {
+  const updateQueryParams = (newFormData: PensionBaseParameters) => {
     const newQueryString = new URLSearchParams({
       monthlyPension: newFormData['monthlyPension'].toString(),
       monthlyPersonalContribution: newFormData['monthlyPersonalContribution'].toString(),
@@ -40,7 +36,7 @@ export default function Calculator({
     router.refresh();
   };
 
-  const updatePensionData = useCallback((newPensionData: QueryParamsSchema) => {
+  const updatePensionData = useCallback((newPensionData: PensionBaseParameters) => {
     setPensionData(newPensionData);
     updateQueryParams(newPensionData);
   }, []);

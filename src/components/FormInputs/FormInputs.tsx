@@ -1,21 +1,18 @@
 'use client';
 
-import type {
-  QueryParamsSchema,
-  QueryParamsSchemaStringified,
-} from '@/hooks/useQueryParamsState/schema';
+import type { PensionBaseParameters } from '@/types';
+import { pensionBaseParametersSchema } from '@/schemas/pensionBaseParameters/pensionBaseParameters';
 
 import type { FormEvent } from 'react';
 
-import { Button, Label, TextField, Input, Form, FieldError } from 'react-aria-components';
-import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
-import queryParamsSchema from '@/hooks/useQueryParamsState/schema';
+import { Button, Label, Input, Form, FieldError, NumberField } from 'react-aria-components';
+import { Controller, useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 
-type FormInputsProps = QueryParamsSchema & {
-  updatePensionData: (pensionData: QueryParamsSchema) => void;
+type FormInputsProps = PensionBaseParameters & {
+  updatePensionData: (pensionData: PensionBaseParameters) => void;
 };
 
 export default function FormInputs({
@@ -25,20 +22,19 @@ export default function FormInputs({
   retirementAge,
   updatePensionData,
 }: FormInputsProps) {
-  const { handleSubmit, control, formState } = useForm<QueryParamsSchemaStringified>({
+  const { handleSubmit, control, formState } = useForm<PensionBaseParameters>({
     defaultValues: {
-      monthlyPension: monthlyPension.toString(),
-      monthlyPersonalContribution: monthlyPersonalContribution.toString(),
-      monthlyEmployerContribution: monthlyEmployerContribution.toString(),
-      retirementAge: retirementAge.toString(),
+      monthlyPension: monthlyPension,
+      monthlyPersonalContribution,
+      monthlyEmployerContribution,
+      retirementAge,
     },
-    resolver: zodResolver(queryParamsSchema),
+    resolver: zodResolver(pensionBaseParametersSchema),
   });
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // @ts-expect-error // todo: type is queryParamsSchema, but RHF thinks it is QueryParamsSchemaStringified, e.g ignoring the type coercion in schema
     handleSubmit(updatePensionData)(event);
   };
 
@@ -52,20 +48,26 @@ export default function FormInputs({
           field: { name, value, onChange, onBlur, ref },
           fieldState: { invalid, error },
         }) => (
-          <TextField
+          <NumberField
             name={name}
-            value={value}
-            onChange={onChange}
+            value={value / 100}
+            onChange={(value) => onChange(value * 100)}
             onBlur={onBlur}
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
             className="mb-4"
+            minValue={0}
+            formatOptions={{
+              style: 'currency',
+              currency: 'GBP',
+              currencyDisplay: 'symbol',
+            }}
           >
             <Label>Monthly pension: </Label>
             <Input ref={ref} />
             <FieldError>{error?.message}</FieldError>
-          </TextField>
+          </NumberField>
         )}
       />
       {/* Monthly personal contribution */}
@@ -76,20 +78,26 @@ export default function FormInputs({
           field: { name, value, onChange, onBlur, ref },
           fieldState: { invalid, error },
         }) => (
-          <TextField
+          <NumberField
             name={name}
-            value={value}
-            onChange={onChange}
+            value={value / 100}
+            onChange={(value) => onChange(value * 100)}
             onBlur={onBlur}
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
             className="mb-4"
+            minValue={0}
+            formatOptions={{
+              style: 'currency',
+              currency: 'GBP',
+              currencyDisplay: 'symbol',
+            }}
           >
             <Label>Monthly personal contribution: </Label>
             <Input ref={ref} />
             <FieldError>{error?.message}</FieldError>
-          </TextField>
+          </NumberField>
         )}
       />
       {/* Monthly employer contribution */}
@@ -100,20 +108,26 @@ export default function FormInputs({
           field: { name, value, onChange, onBlur, ref },
           fieldState: { invalid, error },
         }) => (
-          <TextField
+          <NumberField
             name={name}
-            value={value}
-            onChange={onChange}
+            value={value / 100}
+            onChange={(value) => onChange(value * 100)}
             onBlur={onBlur}
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
             className="mb-4"
+            minValue={0}
+            formatOptions={{
+              style: 'currency',
+              currency: 'GBP',
+              currencyDisplay: 'symbol',
+            }}
           >
             <Label>Monthly employer contribution: </Label>
             <Input ref={ref} />
             <FieldError>{error?.message}</FieldError>
-          </TextField>
+          </NumberField>
         )}
       />
       {/* Retirement age */}
@@ -124,7 +138,7 @@ export default function FormInputs({
           field: { name, value, onChange, onBlur, ref },
           fieldState: { invalid, error },
         }) => (
-          <TextField
+          <NumberField
             name={name}
             value={value}
             onChange={onChange}
@@ -133,11 +147,16 @@ export default function FormInputs({
             validationBehavior="aria"
             isInvalid={invalid}
             className="mb-4"
+            formatOptions={{
+              style: 'unit',
+              unit: 'year',
+              unitDisplay: 'short'
+            }}
           >
             <Label>Retirement Age: </Label>
             <Input ref={ref} />
             <FieldError>{error?.message}</FieldError>
-          </TextField>
+          </NumberField>
         )}
       />
 

@@ -1,6 +1,6 @@
-import type { QueryParamsSchema } from '@/hooks/useQueryParamsState/schema';
+import type { PensionBaseParameters } from '@/types';
 
-type CalculatorResultsProps = QueryParamsSchema;
+type CalculatorResultsProps = PensionBaseParameters;
 
 const ageAtStartOfWorkLife = 25;
 const ageAtDeath = 81;
