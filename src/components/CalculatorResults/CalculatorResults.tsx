@@ -11,6 +11,8 @@ const currencyFormatter = new Intl.NumberFormat('en-GB', {
   currency: 'GBP',
 });
 
+import CurrentPensionOverview from '../CurrentPensionOverview/CurrentPensionOverview';
+
 export default function CalculatorResults({
   monthlyPension,
   monthlyPersonalContribution,
@@ -39,7 +41,7 @@ export default function CalculatorResults({
         <dt>Planned retirement age: </dt>
         <dd>{retirementAge}</dd>
       </dl>
-      <dl className='grid grid-cols-2'>
+      {/* <dl className='grid grid-cols-2'>
         <dt>Work life in years: </dt>
         <dd>{workLifeInYears}</dd>
         <dt>Total contributions at chosen retirement age: </dt>
@@ -50,7 +52,14 @@ export default function CalculatorResults({
         <dd>{numberOfYearsUntilPensionPotIsDepleted}</dd>
         <dt>Age when the pension pot would run out: </dt>
         <dd>{ageWhenPensionPotIsDepleted}</dd>
-      </dl>
+      </dl> */}
+
+      <CurrentPensionOverview
+        monthlyPension={monthlyPension}
+        retirementAge={retirementAge}
+        totalContributionsAtChosenRetirementAge={totalContributionsAtChosenRetirementAge}
+        workLifeInYears={workLifeInYears}
+      />
 
       <CurrentPensionToMaxPension
         totalContributionsAtChosenRetirementAge={totalContributionsAtChosenRetirementAge}

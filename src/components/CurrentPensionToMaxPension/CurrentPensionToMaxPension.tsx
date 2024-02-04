@@ -26,7 +26,7 @@ export default function CurrentPensionToMaxPension({
       <h2 className="mb-2">Pension pot comparison</h2>
       <p className="mb-2">
         By retiring at {retirementAge} your pension pot would be {percentOfTotalFormatted} of the
-        maximum possible pension (age {ageAtDeath}).
+        maximum possible pension pot at age {ageAtDeath}.
       </p>
       <div className="flex justify-between mb-1">
         <span className="text-base font-medium text-blue-700 dark:text-white">
