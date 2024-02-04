@@ -8,15 +8,8 @@ export const queryParamNames = [
 ] as const;
 
 export const queryParamDefaults: Record<QueryParamNames, number> = {
-  monthlyPension: 100,
-  monthlyPersonalContribution: 200,
-  monthlyEmployerContribution: 300,
-  retirementAge: 400,
-} as const;
-
-export const queryParamDefaultsStringified: Record<QueryParamNames, string> = {
-  monthlyPension: '100',
-  monthlyPersonalContribution: '200',
-  monthlyEmployerContribution: '300',
-  retirementAge: '400',
+  monthlyPension: 1_400_00,
+  monthlyPersonalContribution: 1_000_00,
+  monthlyEmployerContribution: 1_500_00,
+  retirementAge: 26,
 } as const;

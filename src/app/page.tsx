@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+
 import styles from './page.module.css';
 
 import queryParamsSchema from '@/hooks/useQueryParamsState/schema';
@@ -20,10 +22,12 @@ export default async function Home({ searchParams }: HomeProps) {
     queryParamsParsed = queryParams.data;
   }
 
+  const resetKey = nanoid();
+
   return (
     <main className={styles.main}>
       <h1>Pension stuff</h1>
-      <Calculator {...queryParamsParsed} />
+      <Calculator {...queryParamsParsed} key={resetKey}/>
     </main>
   );
 }

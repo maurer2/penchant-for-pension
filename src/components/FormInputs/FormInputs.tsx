@@ -23,7 +23,7 @@ export default function FormInputs({
   monthlyPersonalContribution,
   monthlyEmployerContribution,
   retirementAge,
-  updatePensionData
+  updatePensionData,
 }: FormInputsProps) {
   const { handleSubmit, control, formState } = useForm<QueryParamsSchemaStringified>({
     defaultValues: {
@@ -40,7 +40,7 @@ export default function FormInputs({
 
     // @ts-expect-error // todo: type is queryParamsSchema, but RHF thinks it is QueryParamsSchemaStringified, e.g ignoring the type coercion in schema
     handleSubmit(updatePensionData)(event);
-  }
+  };
 
   return (
     <Form onSubmit={onSubmit}>
@@ -61,7 +61,7 @@ export default function FormInputs({
             validationBehavior="aria"
             isInvalid={invalid}
           >
-            <Label>Monthly pension</Label>
+            <Label>Monthly pension: </Label>
             <Input ref={ref} />
             <FieldError>{error?.message}</FieldError>
           </TextField>
@@ -84,7 +84,7 @@ export default function FormInputs({
             validationBehavior="aria"
             isInvalid={invalid}
           >
-            <Label>Monthly personal contribution</Label>
+            <Label>Monthly personal contribution: </Label>
             <Input ref={ref} />
             <FieldError>{error?.message}</FieldError>
           </TextField>
@@ -107,7 +107,7 @@ export default function FormInputs({
             validationBehavior="aria"
             isInvalid={invalid}
           >
-            <Label>Monthly employer contribution</Label>
+            <Label>Monthly employer contribution: </Label>
             <Input ref={ref} />
             <FieldError>{error?.message}</FieldError>
           </TextField>
@@ -130,7 +130,7 @@ export default function FormInputs({
             validationBehavior="aria"
             isInvalid={invalid}
           >
-            <Label>Retirement Age</Label>
+            <Label>Retirement Age: </Label>
             <Input ref={ref} />
             <FieldError>{error?.message}</FieldError>
           </TextField>

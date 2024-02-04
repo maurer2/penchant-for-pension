@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 
 import type { QueryParamsSchema } from '@/hooks/useQueryParamsState/schema';
 import FormInputs from '@/components/FormInputs/FormInputs';
@@ -20,6 +21,7 @@ export default function Calculator({
     monthlyEmployerContribution,
     retirementAge,
   })); // todo replace with useReducer
+  const router = useRouter();
 
   const updateQueryParams = (newFormData: QueryParamsSchema) => {
     const newQueryString = new URLSearchParams({
@@ -33,15 +35,24 @@ export default function Calculator({
     window.history.pushState({}, '', window.location.pathname + '?' + newQueryString.toString());
   };
 
+  const resetPage = () => {
+    router.push('/');
+    router.refresh();
+  };
+
   const updatePensionData = useCallback((newPensionData: QueryParamsSchema) => {
     setPensionData(newPensionData);
-    updateQueryParams(newPensionData)
+    updateQueryParams(newPensionData);
   }, []);
 
   return (
     <div>
       <FormInputs {...pensionData} updatePensionData={updatePensionData} />
       <CalculatorResults {...pensionData} />
+
+      <button type="button" onClick={resetPage}>
+        Reset (debug)
+      </button>
     </div>
   );
 }
