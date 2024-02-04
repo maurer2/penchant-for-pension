@@ -4,28 +4,18 @@ import type {
   QueryParamsSchema,
   QueryParamsSchemaStringified,
 } from '@/hooks/useQueryParamsState/schema';
-import { Button, Label, TextField, Input, Form, FieldError } from 'react-aria-components';
-import { Controller, useForm } from 'react-hook-form';
-import queryParamsSchema from '@/hooks/useQueryParamsState/schema';
-import {
-  queryParamDefaults,
-  queryParamDefaultsStringified,
-} from '@/hooks/useQueryParamsState/constants';
 
+import type { FormEvent } from 'react';
+
+import { Button, Label, TextField, Input, Form, FieldError } from 'react-aria-components';
+import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
+import queryParamsSchema from '@/hooks/useQueryParamsState/schema';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DevTool } from '@hookform/devtools';
 
 type FormInputsProps = QueryParamsSchema & {
-  dummy?: string;
-};
-
-// todo: type is queryParamsSchema, but RHF thinks it is QueryParamsSchemaStringified, e.g ignoring the type coercion in schema
-const updateQueryParams = (newFormData: QueryParamsSchemaStringified) => {
-  const newQueryString = new URLSearchParams(newFormData);
-
-  // triggers new render in server component and updates child components with new state from query
-  window.history.pushState({}, "", window.location.pathname + "?" + newQueryString.toString());
+  updatePensionData: (pensionData: QueryParamsSchema) => void;
 };
 
 export default function FormInputs({
@@ -33,6 +23,7 @@ export default function FormInputs({
   monthlyPersonalContribution,
   monthlyEmployerContribution,
   retirementAge,
+  updatePensionData
 }: FormInputsProps) {
   const { handleSubmit, control, formState } = useForm<QueryParamsSchemaStringified>({
     defaultValues: {
@@ -44,8 +35,15 @@ export default function FormInputs({
     resolver: zodResolver(queryParamsSchema),
   });
 
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // @ts-expect-error // todo: type is queryParamsSchema, but RHF thinks it is QueryParamsSchemaStringified, e.g ignoring the type coercion in schema
+    handleSubmit(updatePensionData)(event);
+  }
+
   return (
-    <Form onSubmit={handleSubmit(updateQueryParams)}>
+    <Form onSubmit={onSubmit}>
       {/* Monthly pension */}
       <Controller
         control={control}

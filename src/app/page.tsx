@@ -1,18 +1,15 @@
 import styles from './page.module.css';
 
-import { ReadonlyURLSearchParams } from 'next/navigation';
-
 import queryParamsSchema from '@/hooks/useQueryParamsState/schema';
 import { queryParamDefaults } from '@/hooks/useQueryParamsState/constants';
 
-// import useQueryParamsState from '@/hooks/useQueryParamsState/useQueryParamsState';
-
 import type { QueryParamsSchema } from '@/hooks/useQueryParamsState/schema';
-import FormInputs from '@/components/FormInputs/FormInputs';
 
 type HomeProps = {
   searchParams: QueryParamsSchema;
 };
+
+import Calculator from '@/components/Calculator/Calculator';
 
 // http://localhost:3000/?monthlyPension=100&monthlyPersonalContribution=200&monthlyEmployerContribution=300&retirementAge=400
 export default async function Home({ searchParams }: HomeProps) {
@@ -26,7 +23,7 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <main className={styles.main}>
       <h1>Pension stuff</h1>
-      <FormInputs {...queryParamsParsed} />
+      <Calculator {...queryParamsParsed} />
     </main>
   );
 }
