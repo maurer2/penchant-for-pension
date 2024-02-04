@@ -26,15 +26,15 @@ export default function CurrentPensionDepletion({
   const remainingYearsAfterDepletionFormatted = yearFormatter.format(remainingYearsAfterDepletion);
 
   return (
-    <div className="mb-8">
-      <h2 className="mb-2 text-lg	font-bold">Depletion of pension pot</h2>
-      <p className="mb-2">
+    <div>
+      <h2 className="mb-4 text-lg	font-bold">Depletion of pension pot</h2>
+      <p className="mb-4">
         Your potential pension pot would run out in{' '}
         {numberOfYearsUntilPensionPotIsDepletedFormatted} after retirement.
       </p>
       {remainingYearsAfterDepletion > 0 ? (
         <div
-          className="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+          className="flex items-center p-4 text-red-800 border border-red-300 rounded-lg bg-red-50"
           role="alert"
         >
           <svg
@@ -48,14 +48,14 @@ export default function CurrentPensionDepletion({
           </svg>
           <span className="sr-only">Warning</span>
           <div>
-            <span className="font-medium">Warning!</span> Your potential pension pot would get
+            <span>Warning!</span> Your potential pension pot would get
             depleted before the end of your life. You would probably need to go back to work for {' '}
             {remainingYearsAfterDepletionFormatted}.
           </div>
         </div>
       ) : (
         <div
-          className="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
+          className="flex items-center p-4 text-green-800 border border-green-300 rounded-lg bg-green-50"
           role="alert"
         >
           <svg
@@ -69,7 +69,7 @@ export default function CurrentPensionDepletion({
           </svg>
           <span className="sr-only">Nice</span>
           <div>
-            <span className="font-medium">Nice!</span> Your potential pension pot would not get
+            <span>Nice!</span> Your potential pension pot would not get
             depleted before the end of your life.
           </div>
         </div>

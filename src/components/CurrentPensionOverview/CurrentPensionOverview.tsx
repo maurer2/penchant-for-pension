@@ -19,18 +19,18 @@ export default function CurrentPensionOverview({
 }: CurrentPensionOverviewProps) {
   return (
     <div className="mb-8">
-      <h2 className="mb-2">Projected pension pot</h2>
-      <p className="mb-2">This is your potential pension pot:</p>
-      <dl className="flex flex-col">
-        <dt className="mb-1 font-semibold">Monthly pension you would receive: </dt>
+      <h2 className="mb-4 text-lg	font-bold">Projected pension pot details</h2>
+      <p className="mb-4">This is your potential pension pot.</p>
+      <dl className="grid grid-cols-[repeat(1,1fr_min-content)] gap-4">
+        <dt>Monthly pension you would receive: </dt>
         <dd>{currencyFormatter.format(monthlyPension / 100)}</dd>
-        <dt className="mb-1 font-semibold">Planned retirement age: </dt>
+        <dt>Planned retirement age: </dt>
         <dd>{retirementAge}</dd>
-        <dt className="mb-1 font-semibold">Probable age at death: </dt>
+        <dt>Life expectancy: </dt>
         <dd>{ageAtDeath}</dd>
-        <dt className="mb-1 font-semibold">Work life in years: </dt>
+        <dt>Work life in years: </dt>
         <dd>{Math.floor(workLifeInYears)}</dd>
-        <dt className="mb-1 font-semibold">Total contributions at chosen retirement age: </dt>
+        <dt>Total contributions at chosen retirement age: </dt>
         <dd>{currencyFormatter.format(totalContributionsAtChosenRetirementAge / 100)}</dd>
       </dl>
     </div>

@@ -5,10 +5,10 @@ import CurrentPensionToMaxPension from '../CurrentPensionToMaxPension/CurrentPen
 import CurrentPensionOverview from '../CurrentPensionOverview/CurrentPensionOverview';
 import CurrentPensionDepletion from '../CurrentPensionDepletion/CurrentPensionDepletion';
 
-const currencyFormatter = new Intl.NumberFormat('en-GB', {
-  style: 'currency',
-  currency: 'GBP',
-});
+// const currencyFormatter = new Intl.NumberFormat('en-GB', {
+//   style: 'currency',
+//   currency: 'GBP',
+// });
 
 type CalculatorResultsProps = PensionBaseParameters;
 
@@ -30,7 +30,7 @@ export default function CalculatorResults({
 
   return (
     <div>
-      <dl className="grid grid-cols-2 mb-8">
+      {/* <dl className="grid grid-cols-2 mb-8">
         <dt>Monthly pension you want to receive: </dt>
         <dd>{currencyFormatter.format(monthlyPension / 100)}</dd>
         <dt>Monthly personal contribution: </dt>
@@ -39,7 +39,7 @@ export default function CalculatorResults({
         <dd>{currencyFormatter.format(monthlyEmployerContribution / 100)}</dd>
         <dt>Planned retirement age: </dt>
         <dd>{retirementAge}</dd>
-      </dl>
+      </dl> */}
 
       <CurrentPensionOverview
         monthlyPension={monthlyPension}

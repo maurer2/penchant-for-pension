@@ -22,8 +22,7 @@ export default async function Home({ searchParams }: HomeProps) {
   const resetKey = nanoid();
 
   return (
-    <main className="max-w-7xl m-auto my-4">
-      <h1 className="text-2xl font-bold mb-4">Pension calculator</h1>
+    <main className="max-w-7xl m-auto my-8 px-8">
       <Calculator baseParams={baseParams} key={resetKey} />
     </main>
   );

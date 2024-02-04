@@ -10,7 +10,7 @@ const percentFormatter = new Intl.NumberFormat('en-GB', {
   maximumFractionDigits: 2,
 });
 
-import { ageAtDeath, ageAtStartOfWorkLife } from '@/constants';
+import { ageAtDeath } from '@/constants';
 
 export default function CurrentPensionToMaxPension({
   totalContributionsAtChosenRetirementAge,
@@ -22,25 +22,20 @@ export default function CurrentPensionToMaxPension({
   const percentOfTotalFormatted = percentFormatter.format(percentOfTotal / 100);
 
   return (
-    <div>
-      <h2 className="mb-2">Pension pot comparison</h2>
+    <div className="mb-8">
+      <h2 className="mb-2 text-lg	font-bold">Pension pot comparison</h2>
       <p className="mb-2">
         By retiring at {retirementAge} your pension pot would be {percentOfTotalFormatted} of the
-        maximum possible pension pot at age {ageAtDeath}.
+        maximum possible pension, that you would get when retiring at age {ageAtDeath}.
       </p>
       <div className="flex justify-between mb-1">
-        <span className="text-base font-medium text-blue-700 dark:text-white">
-          Retirement at {retirementAge}
-        </span>
-        <span className="text-sm font-medium text-blue-700 dark:text-white">
-          {percentOfTotalFormatted}
-        </span>
+        <span className="text-base text-blue-700">Retirement at {retirementAge}</span>
+        <span className=" text-blue-700">{percentOfTotalFormatted}</span>
       </div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-        <div
-          className="bg-blue-600 h-2.5 rounded-full"
-          style={{ width: `${percentOfTotal}%` }}
-        ></div>
+      <div className="w-full bg-gray-200 rounded-full h-2.5">
+        <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${percentOfTotal}%` }}>
+          <span className="sr-only">{percentOfTotal}%</span>
+        </div>
       </div>
     </div>
   );
