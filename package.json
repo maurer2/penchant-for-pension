@@ -3,29 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev --turbo",
+    "lint": "next lint",
+    "start": "next start"
   },
   "dependencies": {
     "@hookform/devtools": "^4.3.1",
     "@hookform/resolvers": "^3.3.4",
+    "@types/node": "^20.11.16",
+    "@types/react": "^18.2.51",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.1.0",
+    "flowbite": "^2.2.1",
+    "flowbite-react": "^0.7.2",
     "nanoid": "^5.0.5",
     "next": "14.1.0",
+    "postcss": "^8.4.33",
     "react": "^18.2.0",
     "react-aria-components": "^1.0.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.50.0",
+    "tailwindcss": "^3.4.1",
     "type-fest": "^4.10.2",
+    "typescript": "^5.3.3",
     "zod": "^3.22.4"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.16",
-    "@types/react": "^18.2.51",
-    "@types/react-dom": "^18.2.18",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "14.1.0",
-    "typescript": "^5.3.3"
   }
 }

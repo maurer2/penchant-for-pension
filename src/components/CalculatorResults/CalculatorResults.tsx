@@ -27,9 +27,8 @@ export default function CalculatorResults({
   const totalContributionsAtDeath = contributionsPerYear * (ageAtDeath - ageAtStartOfWorkLife);
 
   return (
-    <>
-      <hr />
-      <dl>
+    <div>
+      <dl className='grid grid-cols-2 mb-4'>
         <dt>Monthly pension you want to receive: </dt>
         <dd>{currencyFormatter.format(monthlyPension / 100)}</dd>
         <dt>Monthly personal contribution: </dt>
@@ -39,19 +38,18 @@ export default function CalculatorResults({
         <dt>Planned retirement age: </dt>
         <dd>{retirementAge}</dd>
       </dl>
-      <hr />
-      <dl>
+      <dl className='grid grid-cols-2'>
         <dt>Work life in years: </dt>
         <dd>{workLifeInYears}</dd>
         <dt>Total contributions at chosen retirement age: </dt>
         <dd>{currencyFormatter.format(totalContributionsAtChosenRetirementAge / 100)}</dd>
-        <dt>Potential total contributions at {ageAtDeath}: </dt>
+        <dt>Potential total max contributions at {ageAtDeath}: </dt>
         <dd>{currencyFormatter.format(totalContributionsAtDeath / 100)}</dd>
         <dt>Years until the pension pot would run out after retirement: </dt>
         <dd>{numberOfYearsUntilPensionPotIsDepleted}</dd>
         <dt>Age when the pension pot would run out: </dt>
         <dd>{ageWhenPensionPotIsDepleted}</dd>
       </dl>
-    </>
+    </div>
   );
 }
