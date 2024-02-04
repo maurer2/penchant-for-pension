@@ -6,6 +6,7 @@ import { pensionBaseParametersSchema } from '@/schemas/pensionBaseParameters/pen
 import type { FormEvent } from 'react';
 
 import { Button, Label, Input, Form, FieldError, NumberField } from 'react-aria-components';
+import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -31,6 +32,7 @@ export default function FormInputs({
     },
     resolver: zodResolver(pensionBaseParametersSchema),
   });
+  const router = useRouter();
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -38,8 +40,15 @@ export default function FormInputs({
     handleSubmit(updatePensionData)(event);
   };
 
+  const onReset = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    router.push('/');
+    router.refresh();
+  };
+
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} onReset={onReset}>
       {/* Monthly pension */}
       <Controller
         control={control}
@@ -97,7 +106,9 @@ export default function FormInputs({
               currencyDisplay: 'symbol',
             }}
           >
-            <Label className="block text-gray-900 md:col-span-2">Monthly personal contribution: </Label>
+            <Label className="block text-gray-900 md:col-span-2">
+              Monthly personal contribution:{' '}
+            </Label>
             <Input
               ref={ref}
               className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -130,7 +141,9 @@ export default function FormInputs({
               currencyDisplay: 'symbol',
             }}
           >
-            <Label className="block text-gray-900 md:col-span-2">Monthly employer contribution: </Label>
+            <Label className="block text-gray-900 md:col-span-2">
+              Monthly employer contribution:{' '}
+            </Label>
             <Input
               ref={ref}
               className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -171,14 +184,23 @@ export default function FormInputs({
           </NumberField>
         )}
       />
-
-      <Button
-        type="submit"
-        className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-5 py-2.5 me-2"
-      >
-        Submit
-      </Button>
       {/* <DevTool control={control} /> */}
+
+      <div className="flex">
+        <Button
+          type="submit"
+          className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-5 py-2.5 me-2"
+        >
+          Submit
+        </Button>
+
+        <Button
+          className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg px-5 py-2.5 me-2"
+          type="reset"
+        >
+          Reset
+        </Button>
+      </div>
     </Form>
   );
 }
