@@ -42,7 +42,7 @@ export default function Calculator({
   }, []);
 
   return (
-    <div className='grid grid-cols-2 gap-4'>
+    <div className='grid grid-cols-2 gap-8'>
       <FormInputs {...pensionData} updatePensionData={updatePensionData} />
 
       <CalculatorResults {...pensionData} />

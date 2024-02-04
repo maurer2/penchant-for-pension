@@ -2,8 +2,9 @@ import type { PensionBaseParameters } from '@/types';
 
 type CalculatorResultsProps = PensionBaseParameters;
 
-const ageAtStartOfWorkLife = 25;
-const ageAtDeath = 81;
+import { ageAtDeath, ageAtStartOfWorkLife } from '@/constants';
+
+import CurrentPensionToMaxPension from '../CurrentPensionToMaxPension/CurrentPensionToMaxPension'
 
 const currencyFormatter = new Intl.NumberFormat('en-GB', {
   style: 'currency',
@@ -50,6 +51,12 @@ export default function CalculatorResults({
         <dt>Age when the pension pot would run out: </dt>
         <dd>{ageWhenPensionPotIsDepleted}</dd>
       </dl>
+
+      <CurrentPensionToMaxPension
+        totalContributionsAtChosenRetirementAge={totalContributionsAtChosenRetirementAge}
+        totalContributionsAtDeath={totalContributionsAtDeath}
+        retirementAge={retirementAge}
+      />
     </div>
   );
 }

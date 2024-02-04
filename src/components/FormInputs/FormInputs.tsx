@@ -56,7 +56,7 @@ export default function FormInputs({
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
-            className="mb-4"
+            className="mb-4 grid grid-cols-2"
             minValue={1}
             formatOptions={{
               style: 'currency',
@@ -64,8 +64,13 @@ export default function FormInputs({
               currencyDisplay: 'symbol',
             }}
           >
-            <Label>Desired monthly pension: </Label>
-            <Input ref={ref} />
+            <Label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Desired monthly pension:{' '}
+            </Label>
+            <Input
+              ref={ref}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
             <FieldError>{error?.message}</FieldError>
           </NumberField>
         )}
@@ -86,7 +91,7 @@ export default function FormInputs({
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
-            className="mb-4"
+            className="mb-4 grid grid-cols-2"
             minValue={0}
             formatOptions={{
               style: 'currency',
@@ -94,8 +99,13 @@ export default function FormInputs({
               currencyDisplay: 'symbol',
             }}
           >
-            <Label>Monthly personal contribution: </Label>
-            <Input ref={ref} />
+            <Label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Monthly personal contribution:{' '}
+            </Label>
+            <Input
+              ref={ref}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
             <FieldError>{error?.message}</FieldError>
           </NumberField>
         )}
@@ -116,7 +126,7 @@ export default function FormInputs({
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
-            className="mb-4"
+            className="mb-4 grid grid-cols-2"
             minValue={0}
             formatOptions={{
               style: 'currency',
@@ -124,8 +134,13 @@ export default function FormInputs({
               currencyDisplay: 'symbol',
             }}
           >
-            <Label>Monthly employer contribution: </Label>
-            <Input ref={ref} />
+            <Label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Monthly employer contribution:{' '}
+            </Label>
+            <Input
+              ref={ref}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
             <FieldError>{error?.message}</FieldError>
           </NumberField>
         )}
@@ -146,15 +161,20 @@ export default function FormInputs({
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
-            className="mb-4"
+            className="mb-4 grid grid-cols-2"
             formatOptions={{
               style: 'unit',
               unit: 'year',
-              unitDisplay: 'narrow'
+              unitDisplay: 'narrow',
             }}
           >
-            <Label>Retirement Age: </Label>
-            <Input ref={ref} />
+            <Label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Retirement Age:{' '}
+            </Label>
+            <Input
+              ref={ref}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            />
             <FieldError>{error?.message}</FieldError>
           </NumberField>
         )}
