@@ -1,17 +1,16 @@
 import type { PensionBaseParameters } from '@/types';
-
-type CalculatorResultsProps = PensionBaseParameters;
-
 import { ageAtDeath, ageAtStartOfWorkLife } from '@/constants';
 
-import CurrentPensionToMaxPension from '../CurrentPensionToMaxPension/CurrentPensionToMaxPension'
+import CurrentPensionToMaxPension from '../CurrentPensionToMaxPension/CurrentPensionToMaxPension';
+import CurrentPensionOverview from '../CurrentPensionOverview/CurrentPensionOverview';
+import CurrentPensionDepletion from '../CurrentPensionDepletion/CurrentPensionDepletion';
 
 const currencyFormatter = new Intl.NumberFormat('en-GB', {
   style: 'currency',
   currency: 'GBP',
 });
 
-import CurrentPensionOverview from '../CurrentPensionOverview/CurrentPensionOverview';
+type CalculatorResultsProps = PensionBaseParameters;
 
 export default function CalculatorResults({
   monthlyPension,
@@ -31,7 +30,7 @@ export default function CalculatorResults({
 
   return (
     <div>
-      <dl className='grid grid-cols-2 mb-4'>
+      <dl className="grid grid-cols-2 mb-8">
         <dt>Monthly pension you want to receive: </dt>
         <dd>{currencyFormatter.format(monthlyPension / 100)}</dd>
         <dt>Monthly personal contribution: </dt>
@@ -41,18 +40,6 @@ export default function CalculatorResults({
         <dt>Planned retirement age: </dt>
         <dd>{retirementAge}</dd>
       </dl>
-      {/* <dl className='grid grid-cols-2'>
-        <dt>Work life in years: </dt>
-        <dd>{workLifeInYears}</dd>
-        <dt>Total contributions at chosen retirement age: </dt>
-        <dd>{currencyFormatter.format(totalContributionsAtChosenRetirementAge / 100)}</dd>
-        <dt>Potential total max contributions at {ageAtDeath}: </dt>
-        <dd>{currencyFormatter.format(totalContributionsAtDeath / 100)}</dd>
-        <dt>Years until the pension pot would run out after retirement: </dt>
-        <dd>{numberOfYearsUntilPensionPotIsDepleted}</dd>
-        <dt>Age when the pension pot would run out: </dt>
-        <dd>{ageWhenPensionPotIsDepleted}</dd>
-      </dl> */}
 
       <CurrentPensionOverview
         monthlyPension={monthlyPension}
@@ -64,6 +51,12 @@ export default function CalculatorResults({
       <CurrentPensionToMaxPension
         totalContributionsAtChosenRetirementAge={totalContributionsAtChosenRetirementAge}
         totalContributionsAtDeath={totalContributionsAtDeath}
+        retirementAge={retirementAge}
+      />
+
+      <CurrentPensionDepletion
+        numberOfYearsUntilPensionPotIsDepleted={numberOfYearsUntilPensionPotIsDepleted}
+        ageWhenPensionPotIsDepleted={ageWhenPensionPotIsDepleted}
         retirementAge={retirementAge}
       />
     </div>
