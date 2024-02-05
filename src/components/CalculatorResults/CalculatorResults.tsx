@@ -25,17 +25,6 @@ export default function CalculatorResults({
 
   return (
     <div>
-      {/* <dl className="grid grid-cols-2 mb-8">
-        <dt>Monthly pension you want to receive: </dt>
-        <dd>{currencyFormatter.format(monthlyPension / 100)}</dd>
-        <dt>Monthly personal contribution: </dt>
-        <dd>{currencyFormatter.format(monthlyPersonalContribution / 100)}</dd>
-        <dt>Monthly employer contribution: </dt>
-        <dd>{currencyFormatter.format(monthlyEmployerContribution / 100)}</dd>
-        <dt>Planned retirement age: </dt>
-        <dd>{retirementAge}</dd>
-      </dl> */}
-
       <CurrentPensionOverview
         monthlyPension={monthlyPension}
         retirementAge={retirementAge}

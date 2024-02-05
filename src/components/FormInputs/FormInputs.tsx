@@ -12,24 +12,14 @@ import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 // import { DevTool } from '@hookform/devtools';
 
-type FormInputsProps = PensionBaseParameters & {
+type FormInputsProps = {
+  pensionData: PensionBaseParameters;
   updatePensionData: (pensionData: PensionBaseParameters) => void;
 };
 
-export default function FormInputs({
-  monthlyPension,
-  monthlyPersonalContribution,
-  monthlyEmployerContribution,
-  retirementAge,
-  updatePensionData,
-}: FormInputsProps) {
-  const { handleSubmit, control, formState } = useForm<PensionBaseParameters>({
-    defaultValues: {
-      monthlyPension: monthlyPension,
-      monthlyPersonalContribution,
-      monthlyEmployerContribution,
-      retirementAge,
-    },
+export default function FormInputs({ pensionData, updatePensionData }: FormInputsProps) {
+  const { handleSubmit, control } = useForm<PensionBaseParameters>({
+    defaultValues: pensionData,
     resolver: zodResolver(pensionBaseParametersSchema),
   });
   const router = useRouter();
@@ -49,10 +39,8 @@ export default function FormInputs({
 
   return (
     <Form onSubmit={onSubmit} onReset={onReset}>
-      <h2 className='mb-4 text-lg font-bold'>Pension configurator</h2>
-      <p className="mb-4">
-        Please enter your pension details
-      </p>
+      <h2 className="mb-4 text-lg font-bold">Pension configurator</h2>
+      <p className="mb-4">Please enter your pension details</p>
       {/* Monthly pension */}
       <Controller
         control={control}
@@ -189,7 +177,6 @@ export default function FormInputs({
         )}
       />
       {/* <DevTool control={control} /> */}
-
       <div className="flex">
         <Button
           type="submit"

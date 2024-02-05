@@ -18,9 +18,9 @@ export default function CurrentPensionToMaxPension({
   const percentOfTotalFormatted = percentFormatter.format(percentOfTotal / 100);
 
   return (
-    <section className="mb-8">
-      <h2 className="mb-2 text-lg	font-bold">Pension pot comparison</h2>
-      <p className="mb-2">
+    <section className="mb-8" data-testid="current-pension-to-max-pension">
+      <h2 className="mb-4 text-lg	font-bold">Pension pot comparison</h2>
+      <p className="mb-4">
         When retiring at age{' '}
         <span data-testid="current-pension-to-max-pension-current-age">{retirementAge}</span> your
         pension pot would contain
@@ -34,7 +34,7 @@ export default function CurrentPensionToMaxPension({
         that you would get when retiring at age{' '}
         <span data-testid="current-pension-to-max-pension-age-of-death">{ageAtDeath}</span>.
       </p>
-      <div className="flex justify-between mb-1" data-testid="current-pension-to-max-pension-meter">
+      <div className="flex justify-between mb-4" data-testid="current-pension-to-max-pension-meter">
         <span className="text-base text-blue-700">
           Retire with {currencyFormatter.format(totalContributionsAtChosenRetirementAge / 100)}
         </span>

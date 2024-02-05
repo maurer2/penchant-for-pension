@@ -15,7 +15,7 @@ export default function CurrentPensionOverview({
   monthlyPension,
 }: CurrentPensionOverviewProps) {
   return (
-    <section className="mb-8">
+    <section className="mb-8" data-testid="current-pension-overview">
       <h2 className="mb-4 text-lg	font-bold">Projected pension pot details</h2>
       <p className="mb-4">This is your potential pension pot.</p>
       <dl className="grid grid-cols-[repeat(1,1fr_min-content)] gap-4" role="list">

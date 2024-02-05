@@ -35,7 +35,7 @@ export default function Calculator({ baseParams }: CalculatorProps) {
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
       <h1 className="col-span-full text-2xl font-bold">Pension calculator</h1>
-      <FormInputs {...pensionData} updatePensionData={updatePensionData} />
+      <FormInputs pensionData={pensionData} updatePensionData={updatePensionData} />
       <CalculatorResults {...pensionData} />
     </div>
   );

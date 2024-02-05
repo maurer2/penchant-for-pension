@@ -17,7 +17,7 @@ export default function CurrentPensionDepletion({
   const remainingYearsAfterDepletionFormatted = yearFormatter.format(remainingYearsAfterDepletion);
 
   return (
-    <section>
+    <section data-testid="current-depletion-of-pension-pot">
       <h2 className="mb-4 text-lg	font-bold">Depletion of pension pot</h2>
       <p className="mb-4">
         Your potential pension pot would run out in{' '}

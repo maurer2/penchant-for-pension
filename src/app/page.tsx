@@ -2,14 +2,12 @@ import { nanoid } from 'nanoid';
 
 import { queryParamSchema } from '@/schemas/queryParams/queryParams';
 import { baseParamsDefaults } from '@/constants';
-
 import type { QueryParamsSchemaStringified } from '@/types';
+import Calculator from '@/components/Calculator/Calculator';
 
 type HomeProps = {
   searchParams: QueryParamsSchemaStringified;
 };
-
-import Calculator from '@/components/Calculator/Calculator';
 
 // http://localhost:3000/?monthlyPension=100&monthlyPersonalContribution=200&monthlyEmployerContribution=300&retirementAge=400
 export default async function Home({ searchParams }: HomeProps) {
