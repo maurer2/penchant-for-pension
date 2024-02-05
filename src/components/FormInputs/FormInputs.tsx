@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DevTool } from '@hookform/devtools';
+// import { DevTool } from '@hookform/devtools';
 
 type FormInputsProps = PensionBaseParameters & {
   updatePensionData: (pensionData: PensionBaseParameters) => void;
@@ -49,6 +49,10 @@ export default function FormInputs({
 
   return (
     <Form onSubmit={onSubmit} onReset={onReset}>
+      <h2 className='mb-4 text-lg font-bold'>Pension configurator</h2>
+      <p className="mb-4">
+        Please enter your pension details
+      </p>
       {/* Monthly pension */}
       <Controller
         control={control}
@@ -189,7 +193,7 @@ export default function FormInputs({
       <div className="flex">
         <Button
           type="submit"
-          className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-5 py-2.5 me-2"
+          className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg px-5 py-2.5 me-2"
         >
           Submit
         </Button>

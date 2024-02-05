@@ -4,13 +4,11 @@ import { yearFormatter } from '@/helpers/formatters/formatters';
 type CurrentPensionDepletionProps = {
   numberOfYearsUntilPensionPotIsDepleted: number;
   ageWhenPensionPotIsDepleted: number;
-  retirementAge: number;
 };
 
 export default function CurrentPensionDepletion({
   numberOfYearsUntilPensionPotIsDepleted,
   ageWhenPensionPotIsDepleted,
-  retirementAge,
 }: CurrentPensionDepletionProps) {
   const numberOfYearsUntilPensionPotIsDepletedFormatted = yearFormatter.format(
     numberOfYearsUntilPensionPotIsDepleted,
@@ -19,7 +17,7 @@ export default function CurrentPensionDepletion({
   const remainingYearsAfterDepletionFormatted = yearFormatter.format(remainingYearsAfterDepletion);
 
   return (
-    <div>
+    <section>
       <h2 className="mb-4 text-lg	font-bold">Depletion of pension pot</h2>
       <p className="mb-4">
         Your potential pension pot would run out in{' '}
@@ -60,19 +58,13 @@ export default function CurrentPensionDepletion({
           >
             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
           </svg>
-          <span className="sr-only">Nice</span>
+          <span className="sr-only">Info</span>
           <div>
             <span>Nice!</span> Your potential pension pot would not get depleted before the end of
             your life.
           </div>
         </div>
       )}
-      {/* <dl className="grid grid-cols-2">
-        <dt>Years until the pension pot would run out after retirement: </dt>
-        <dd>{numberOfYearsUntilPensionPotIsDepleted}</dd>
-        <dt>Age when the pension pot would run out: </dt>
-        <dd>{ageWhenPensionPotIsDepleted}</dd>
-      </dl> */}
-    </div>
+    </section>
   );
 }

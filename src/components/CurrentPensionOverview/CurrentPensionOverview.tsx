@@ -15,23 +15,31 @@ export default function CurrentPensionOverview({
   monthlyPension,
 }: CurrentPensionOverviewProps) {
   return (
-    <div className="mb-8">
+    <section className="mb-8">
       <h2 className="mb-4 text-lg	font-bold">Projected pension pot details</h2>
       <p className="mb-4">This is your potential pension pot.</p>
-      <dl className="grid grid-cols-[repeat(1,1fr_min-content)] gap-4">
+      <dl className="grid grid-cols-[repeat(1,1fr_min-content)] gap-4" role="list">
         <dt>Monthly pension you would receive:</dt>
-        <dd className="text-right">{currencyFormatter.format(monthlyPension / 100)}</dd>
+        <dd className="text-right" data-testid="current-pension-overview-monthly-pension">
+          {currencyFormatter.format(monthlyPension / 100)}
+        </dd>
         <dt>Age at retirement:</dt>
-        <dd className="text-right">{retirementAge}</dd>
+        <dd className="text-right" data-testid="current-pension-overview-retirement-age">
+          {retirementAge}
+        </dd>
         <dt>Number of years worked:</dt>
-        <dd className="text-right">{Math.floor(workLifeInYears)}</dd>
+        <dd className="text-right" data-testid="current-pension-overview-work-life">
+          {Math.floor(workLifeInYears)}
+        </dd>
         <dt>Life expectancy:</dt>
-        <dd className="text-right">{ageAtDeath}</dd>
+        <dd className="text-right" data-testid="current-pension-overview-age-at-death">
+          {ageAtDeath}
+        </dd>
         <dt>Total contributions at retirement age:</dt>
-        <dd className="text-right">
+        <dd className="text-right" data-testid="current-pension-overview-total-contributions">
           {currencyFormatter.format(totalContributionsAtChosenRetirementAge / 100)}
         </dd>
       </dl>
-    </div>
+    </section>
   );
 }

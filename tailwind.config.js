@@ -4,6 +4,7 @@ module.exports = {
     './src/components/**/*.{ts,tsx}',
     './src/app/**/*.{ts,tsx}',
     './public/**/*.html',
+    './playwright/**/*.html',
   ],
   theme: {
     extend: {},

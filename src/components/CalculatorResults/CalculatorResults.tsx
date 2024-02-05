@@ -52,7 +52,6 @@ export default function CalculatorResults({
       <CurrentPensionDepletion
         numberOfYearsUntilPensionPotIsDepleted={numberOfYearsUntilPensionPotIsDepleted}
         ageWhenPensionPotIsDepleted={ageWhenPensionPotIsDepleted}
-        retirementAge={retirementAge}
       />
     </div>
   );
