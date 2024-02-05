@@ -58,7 +58,7 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
             validationBehavior="aria"
             isInvalid={invalid}
             className="mb-4 grid grid-cols-1 md:grid-cols-3 gap-4 items-start"
-            minValue={1}
+            minValue={100}
             formatOptions={{
               style: 'currency',
               currency: 'GBP',

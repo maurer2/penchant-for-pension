@@ -3,9 +3,9 @@ import { ageAtStartOfWorkLife, ageAtDeath } from '@/constants';
 
 // used for form validation
 export const pensionBaseParametersSchema = z.object({
-  monthlyPension: z.number().positive().min(1, `Must be more than 0`),
-  monthlyPersonalContribution: z.number().nonnegative(`Must not be negative`),
-  monthlyEmployerContribution: z.number().nonnegative(`Must not be negative`),
+  monthlyPension: z.number().min(100, `Monthly pension must be more than 100`),
+  monthlyPersonalContribution: z.number().nonnegative(`Monthly personal contribution must not be negative`),
+  monthlyEmployerContribution: z.number().nonnegative(`Monthly employer contribution must not be negative`),
   retirementAge: z
     .number()
     .min(ageAtStartOfWorkLife, `You must be older than ${ageAtStartOfWorkLife - 1}`)
