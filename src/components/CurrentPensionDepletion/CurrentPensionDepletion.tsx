@@ -18,10 +18,13 @@ export default function CurrentPensionDepletion({
 
   return (
     <section data-testid="current-depletion-of-pension-pot">
-      <h2 className="mb-4 text-lg	font-bold">Depletion of pension pot</h2>
+      <h2 className="mb-4 text-lg font-bold">Depletion of pension pot</h2>
       <p className="mb-4">
-        Your potential pension pot would run out in{' '}
-        {numberOfYearsUntilPensionPotIsDepletedFormatted} after retirement.
+        Your potential pension pot would run out in
+        {' '}
+        {numberOfYearsUntilPensionPotIsDepletedFormatted}
+        {' '}
+        after retirement.
       </p>
       {remainingYearsAfterDepletion > 0 ? (
         <div
@@ -39,9 +42,13 @@ export default function CurrentPensionDepletion({
           </svg>
           <span className="sr-only">Warning</span>
           <div>
-            <span>Warning!</span> Your potential pension pot would get depleted before the end of
-            your life. You would probably need to go back to work for{' '}
-            {remainingYearsAfterDepletionFormatted}.
+            <span>Warning!</span>
+            {' '}
+            Your potential pension pot would get depleted before the end of
+            your life. You would probably need to go back to work for
+            {' '}
+            {remainingYearsAfterDepletionFormatted}
+            .
           </div>
         </div>
       ) : (
@@ -60,7 +67,9 @@ export default function CurrentPensionDepletion({
           </svg>
           <span className="sr-only">Info</span>
           <div>
-            <span>Nice!</span> Your potential pension pot would not get depleted before the end of
+            <span>Nice!</span>
+            {' '}
+            Your potential pension pot would not get depleted before the end of
             your life.
           </div>
         </div>

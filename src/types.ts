@@ -1,8 +1,8 @@
 import { Simplify } from 'type-fest';
-import z from 'zod'
+import z from 'zod';
 
-import { baseParamsNames } from "./constants";
-import { queryParamSchema } from "./schemas/queryParams/queryParams";
+import { baseParamsNames } from './constants';
+import { queryParamSchema } from './schemas/queryParams/queryParams';
 import { pensionBaseParametersSchema } from './schemas/pensionBaseParameters/pensionBaseParameters';
 
 export type BaseParamNames = typeof baseParamsNames[number];

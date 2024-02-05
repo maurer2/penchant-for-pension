@@ -17,14 +17,14 @@ export default function Calculator({ baseParams }: CalculatorProps) {
 
   const updateQueryParams = (newFormData: PensionBaseParameters) => {
     const newQueryString = new URLSearchParams({
-      monthlyPension: newFormData['monthlyPension'].toString(),
-      monthlyPersonalContribution: newFormData['monthlyPersonalContribution'].toString(),
-      monthlyEmployerContribution: newFormData['monthlyEmployerContribution'].toString(),
-      retirementAge: newFormData['retirementAge'].toString(),
+      monthlyPension: newFormData.monthlyPension.toString(),
+      monthlyPersonalContribution: newFormData.monthlyPersonalContribution.toString(),
+      monthlyEmployerContribution: newFormData.monthlyEmployerContribution.toString(),
+      retirementAge: newFormData.retirementAge.toString(),
     });
 
     // store new data in query params
-    window.history.pushState({}, '', window.location.pathname + '?' + newQueryString.toString());
+    window.history.pushState({}, '', `${window.location.pathname}?${newQueryString.toString()}`);
   };
 
   const updatePensionData = useCallback((newPensionData: PensionBaseParameters) => {

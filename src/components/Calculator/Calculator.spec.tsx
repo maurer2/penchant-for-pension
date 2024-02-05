@@ -3,14 +3,9 @@ import type { ComponentPropsWithoutRef } from 'react';
 import { expect, test } from '@playwright/experimental-ct-react';
 // import { beforeMount } from '@playwright/experimental-ct-react/hooks';
 
-import router from 'next/navigation';
+// import router from 'next/navigation';
 
 import Calculator from './Calculator';
-
-const mocks = {
-  onBlur: () => {},
-  onChange: () => {},
-};
 
 test.describe.skip('Calculator', () => {
   // beforeMount(async () => {
@@ -30,7 +25,7 @@ test.describe.skip('Calculator', () => {
       monthlyPersonalContribution: 60000,
       monthlyEmployerContribution: 120000,
       retirementAge: 55,
-    }
+    },
   };
 
   test('renders', async ({ mount }) => {

@@ -5,7 +5,9 @@ import { pensionBaseParametersSchema } from '@/schemas/pensionBaseParameters/pen
 
 import type { FormEvent } from 'react';
 
-import { Button, Label, Input, Form, FieldError, NumberField } from 'react-aria-components';
+import {
+  Button, Label, Input, Form, FieldError, NumberField,
+} from 'react-aria-components';
 import { useRouter } from 'next/navigation';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -24,13 +26,13 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
   });
   const router = useRouter();
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     handleSubmit(updatePensionData)(event);
   };
 
-  const onReset = async (event: FormEvent<HTMLFormElement>) => {
+  const onReset = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     router.push('/');
@@ -40,19 +42,21 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
   return (
     <Form onSubmit={onSubmit} onReset={onReset}>
       <h2 className="mb-4 text-lg font-bold">Pension configurator</h2>
-      <p className="mb-4">Please enter your pension details</p>
+      <p className="mb-4">Please enter your pension details.</p>
       {/* Monthly pension */}
       <Controller
         control={control}
         name="monthlyPension"
         render={({
-          field: { name, value, onChange, onBlur, ref },
+          field: {
+            name, value, onChange, onBlur, ref,
+          },
           fieldState: { invalid, error },
         }) => (
           <NumberField
             name={name}
             value={value / 100}
-            onChange={(value) => onChange(value * 100)}
+            onChange={(currentValue) => { onChange(currentValue * 100); }}
             onBlur={onBlur}
             isRequired
             validationBehavior="aria"
@@ -79,13 +83,15 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
         control={control}
         name="monthlyPersonalContribution"
         render={({
-          field: { name, value, onChange, onBlur, ref },
+          field: {
+            name, value, onChange, onBlur, ref,
+          },
           fieldState: { invalid, error },
         }) => (
           <NumberField
             name={name}
             value={value / 100}
-            onChange={(value) => onChange(value * 100)}
+            onChange={(currentValue) => { onChange(currentValue * 100); }}
             onBlur={onBlur}
             isRequired
             validationBehavior="aria"
@@ -99,7 +105,8 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
             }}
           >
             <Label className="block text-gray-900 md:col-span-2">
-              Monthly personal contribution:{' '}
+              Monthly personal contribution:
+              {' '}
             </Label>
             <Input
               ref={ref}
@@ -114,13 +121,15 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
         control={control}
         name="monthlyEmployerContribution"
         render={({
-          field: { name, value, onChange, onBlur, ref },
+          field: {
+            name, value, onChange, onBlur, ref,
+          },
           fieldState: { invalid, error },
         }) => (
           <NumberField
             name={name}
             value={value / 100}
-            onChange={(value) => onChange(value * 100)}
+            onChange={(currentValue) => { onChange(currentValue * 100); }}
             onBlur={onBlur}
             isRequired
             validationBehavior="aria"
@@ -134,7 +143,8 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
             }}
           >
             <Label className="block text-gray-900 md:col-span-2">
-              Monthly employer contribution:{' '}
+              Monthly employer contribution:
+              {' '}
             </Label>
             <Input
               ref={ref}
@@ -149,7 +159,9 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
         control={control}
         name="retirementAge"
         render={({
-          field: { name, value, onChange, onBlur, ref },
+          field: {
+            name, value, onChange, onBlur, ref,
+          },
           fieldState: { invalid, error },
         }) => (
           <NumberField

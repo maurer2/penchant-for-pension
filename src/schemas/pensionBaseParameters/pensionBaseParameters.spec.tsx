@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test';
 
-import { pensionBaseParametersSchema } from './pensionBaseParameters';
 import type { PensionBaseParameters } from '@/types';
+import { pensionBaseParametersSchema } from './pensionBaseParameters';
 
 test.describe('pensionBaseParametersSchema', () => {
-  test('it should validate correct data', ({}) => {
+  test('it should validate correct data', () => {
     const data: PensionBaseParameters = {
       monthlyPension: 100,
       monthlyPersonalContribution: 0,
@@ -14,7 +14,7 @@ test.describe('pensionBaseParametersSchema', () => {
     expect(pensionBaseParametersSchema.safeParse(data).success).toBeTruthy();
   });
 
-  test('it should not allow age below 25', ({}) => {
+  test('it should not allow age below 25', () => {
     const data: PensionBaseParameters = {
       monthlyPension: 2_000_00,
       monthlyPersonalContribution: 1_000_00,
@@ -29,7 +29,7 @@ test.describe('pensionBaseParametersSchema', () => {
     }
   });
 
-  test('it should not allow age over 81', ({}) => {
+  test('it should not allow age over 81', () => {
     const data: PensionBaseParameters = {
       monthlyPension: 2_000_00,
       monthlyPersonalContribution: 1_000_00,
@@ -44,7 +44,7 @@ test.describe('pensionBaseParametersSchema', () => {
     }
   });
 
-  test('it should not allow monthlyPension of less than 100', ({}) => {
+  test('it should not allow monthlyPension of less than 100', () => {
     const data: PensionBaseParameters = {
       monthlyPension: 99,
       monthlyPersonalContribution: 1_000_00,
@@ -59,7 +59,7 @@ test.describe('pensionBaseParametersSchema', () => {
     }
   });
 
-  test('it should not allow negative monthlyPersonalContribution', ({}) => {
+  test('it should not allow negative monthlyPersonalContribution', () => {
     const data: PensionBaseParameters = {
       monthlyPension: 2_000_00,
       monthlyPersonalContribution: -1,
@@ -76,7 +76,7 @@ test.describe('pensionBaseParametersSchema', () => {
     }
   });
 
-  test('it should not allow negative monthlyEmployerContribution', ({}) => {
+  test('it should not allow negative monthlyEmployerContribution', () => {
     const data: PensionBaseParameters = {
       monthlyPension: 2_000_00,
       monthlyPersonalContribution: 1_000_00,

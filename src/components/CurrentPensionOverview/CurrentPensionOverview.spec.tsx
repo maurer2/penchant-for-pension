@@ -1,23 +1,10 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
 import { expect, test } from '@playwright/experimental-ct-react';
-import { mock } from 'node:test';
 
 import CurrentPensionOverview from './CurrentPensionOverview';
 
-const mocks = {
-  onBlur: () => {},
-  onChange: () => {},
-};
-
 test.describe('CurrentPensionOverview', () => {
-  // const onChangeSpy = mock.method(mocks, 'onChange', async () => {});
-  // const onBlurSpy = mock.method(mocks, 'onBlur', async () => {});
-
-  test.beforeEach(async () => {
-    mock.reset();
-  });
-
   const propsDefault: ComponentPropsWithoutRef<typeof CurrentPensionOverview> = {
     workLifeInYears: 30,
     totalContributionsAtChosenRetirementAge: 64800000,
