@@ -2,8 +2,9 @@
 
 import type { PensionBaseParameters } from '@/types';
 import { pensionBaseParametersSchema } from '@/schemas/pensionBaseParameters/pensionBaseParameters';
+import { useRef } from 'react';
 
-import type { FormEvent } from 'react';
+import type { FormEvent, KeyboardEvent } from 'react';
 
 import {
   Button, Label, Input, Form, FieldError, NumberField,
@@ -25,6 +26,7 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
     resolver: zodResolver(pensionBaseParametersSchema),
   });
   const router = useRouter();
+  const formElement = useRef<HTMLFormElement>(null);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,8 +41,15 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
     router.refresh();
   };
 
+  // workaround for broken enter submit in react aria's number input fields
+  const handleKeyUp = ({ key }: KeyboardEvent) => {
+    if (key === 'Enter') {
+      formElement.current?.requestSubmit();
+    }
+  };
+
   return (
-    <Form onSubmit={onSubmit} onReset={onReset}>
+    <Form onSubmit={onSubmit} onReset={onReset} ref={formElement}>
       <h2 className="mb-4 text-lg font-bold">Pension configurator</h2>
       <p className="mb-4">Please enter your pension details.</p>
       {/* Monthly pension */}
@@ -58,6 +67,7 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
             value={value / 100}
             onChange={(currentValue) => { onChange(currentValue * 100); }}
             onBlur={onBlur}
+            onKeyUp={handleKeyUp}
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
@@ -93,6 +103,7 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
             value={value / 100}
             onChange={(currentValue) => { onChange(currentValue * 100); }}
             onBlur={onBlur}
+            onKeyUp={handleKeyUp}
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
@@ -131,6 +142,7 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
             value={value / 100}
             onChange={(currentValue) => { onChange(currentValue * 100); }}
             onBlur={onBlur}
+            onKeyUp={handleKeyUp}
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
@@ -169,6 +181,7 @@ export default function FormInputs({ pensionData, updatePensionData }: FormInput
             value={value}
             onChange={onChange}
             onBlur={onBlur}
+            onKeyUp={handleKeyUp}
             isRequired
             validationBehavior="aria"
             isInvalid={invalid}
